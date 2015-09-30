@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Symbol</title>
+	<meta charset='UTF-8'>
+</head>
+<body>
+<div>
+	symbol
+</div>
+<h1>
+	ES5的对象属性名都是字符串，这容易造成属性名的冲突。比如，你使用了一个他人提供的对象，但又想为这个对象添加新的方法，新方法的名字就有可能与现有方法产生冲突。如果有一种机制，保证每个属性的名字都是独一无二的就好了，这样就从根本上防止属性名的冲突。这就是ES6引入Symbol的原因。
+
+	ES6引入了一种新的原始数据类型Symbol，表示独一无二的值。它是JavaScript语言的第七种数据类型，前六种是：Undefined、Null、布尔值（Boolean）、字符串（String）、数值（Number）、对象（Object）。
+
+	Symbol值通过Symbol函数生成。这就是说，对象的属性名现在可以有两种类型，一种是原来就有的字符串，另一种就是新增的Symbol类型。凡是属性名属于Symbol类型，就都是独一无二的，可以保证不会与其他属性名产生冲突。
+</h1>
+<script type="text/javascript">
+	"use strict";
+
+	let s = Symbol("fool");
+	console.log(s.toString());
+
+	let symobl01 = Symbol('key1');
+	let symobl02 = Symbol('key2');
+
+	//第一种写法
+	var obj1 = {};
+	obj1[symobl01] = 'I am the value associated with symbol_01';
+
+	//第二种写法
+	var obj2 = {
+		[symobl01]:'I am the value associated with symbol_01',
+		[symobl02]:'I am the value associated with symbol_02'
+	};
+	//返回一个数组,成员是当前对象的所有用作属性名的 Symbol 值
+	// var obj2Symbols = Object.getOwnPropertySymbols();
+	// console.log(obj2Symbols.length);
+
+	//第三种写法
+	var obj3 = {};
+	Object.defineProperty(obj3,symobl01,{value:'I am the value associated with symbol_01'});
+
+	//以上写法都得到同样的结果
+	console.log(obj1[symobl01],obj2[symobl01],obj3[symobl01]);
+
+	//同理,在对象内部定义属性时,Symbol 值必须放在方括号之中
+	let obj4 = {
+		[s]:function (arg) {
+			console.log('传进来的 arg 是: ' + arg);
+		}
+	};
+	// let obj4 = {
+	// 	[s](arg) {
+	// 		console.log('传进来的 arg 是: ' + arg);
+	// 	}
+	// };
+
+	obj4[s]("傻傻");
+
+	//Symbol 类型还可以用于定义一组常量,保证这组常量的值都是不相等的.
+	// log.levels = {
+	// 	DEBUG:Symbol('debug'),
+	// 	INFO:Symbol('info'),
+	// 	WARN:Symbol('warn'),
+	// };
+	// console.log(log.levels.DEBUG,'debug messafe');
+
+
+</script>
+</body>
+</html>

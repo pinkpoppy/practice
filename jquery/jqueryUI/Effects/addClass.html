@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Add Class</title>
+</head>
+<body>
+	<p>Adds class(es) to elements while animating all style changes.</p>
+	<p>This demo adds a class which animates:<strong>text-indent,letter-spacing,width,height,padding,margin,and font-size</strong>.</p>
+
+	<div class="toggler">
+		<div id="effect" class="ui_corner_all">
+			 Etiam libero neque, luctus a, eleifend nec, semper at, lorem. Sed pede.
+		</div>
+	</div>
+
+	<button id="button">Run Effect</button>
+	<style>
+	.toggler{width: 500px;height: 200px;position: relative;}
+	#button{padding: 0.5em 1em;text-decoration: none;}
+	#effect{width: 240px;padding: 1em;font-size: 1.2em;border: 1px solid #000;background: #eee; color: #333;}
+	.newClass { text-indent: 40px; letter-spacing: .4em; width: 410px; height: 100px; padding: 30px; margin: 10px; font-size: 1.6em; }
+	</style>
+	<script type="text/javascript">
+	document.onreadystatechange = function () {
+		if (document.readyState=='interactive') {
+			//The document has finished loading. We can now access the DOM elements.
+			initApplication();
+		} else if (document.readyState=='complete') {
+			// the page is fully loaded.
+		}
+	}
+	function initApplication() {
+		document.getElementById('effect').addEventListener('click',function(event) {
+			console.log(event.target);
+		},false);
+
+		document.getElementById('button').addEventListener('click',function(event) {
+			var effect = document.getElementById('effect');
+			effect.classList.toggle('newClass');
+		},false);
+	}
+	</script>
+</body>
+</html>

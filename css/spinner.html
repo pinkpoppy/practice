@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<style>
+
+		/* WebKit and Opera browsers */
+		@-webkit-keyframes spinner {
+			from { -webkit-transform: rotateY(0deg);    }
+			to   { -webkit-transform: rotateY(-360deg); }
+		}
+
+		/* all other browsers */
+		@keyframes spinner {
+			from {
+				-moz-transform: rotateY(0deg);
+				-ms-transform: rotateY(0deg);
+				transform: rotateY(0deg);
+			}
+			to {
+				-moz-transform: rotateY(-360deg);
+				-ms-transform: rotateY(-360deg);
+				transform: rotateY(-360deg);
+			}
+		}
+
+		#spinner {
+			/*-webkit-transition:width 2s,background-color 4s,color 4s;*/
+			/*-webkit-animation:spinner 5s infinite;
+			animation:spinner 5s infinite;*/
+
+			-webkit-animation-name:spinner;
+			-webkit-animation-timing-function:linear;
+			-webkit-animation-iteration-count:infinite;
+			-webkit-animation-duration:6s;
+			/*-webkit-transform-origin:20% 40%;*/
+
+			animation-name:spinner;
+			animation-timing-function:linear;
+			animation-iteration-count:infinite;
+			animation-duration:6s;
+			/*transform-origin:20% 40%;*/
+
+			-webkit-transform-style:preserve-3d;
+			-moz-transform-style:preserve-3d;
+			-ms-transform-style:preserve-3d;
+			transform-style:preserve-3d;
+		}
+
+		#spinner img {
+			position: absolute;
+			border: 1px solid #ccc;
+			background: rgba(255,255,255,0.8);
+			box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+		}
+
+		#spinner:hover{
+			-webkit-animation-play-state:paused;
+			animation-play-state:paused;
+		}
+		/*#spinner:hover{
+			width: 300px;
+			background-color: green;
+			opacity: 0.5;
+			border-radius: 5px;
+			color: #fff;
+		}*/
+
+		#stage {
+			margin: 1em auto;
+    		-webkit-perspective: 1200px;
+    		-moz-perspective: 1200px;
+    		-ms-perspective: 1200px;
+    		perspective: 1200px;		
+  		}
+	</style>
+</head>
+<body>
+	<div id="example1">吼吼吼</div>
+	<div id="stage" style="background: rgba(0,0,0,0.5);">
+		<p id="spinner" style="background: rgba(0,0,0,0.5); text-align: center; color: #fff;">Stop, I'm getting dizzy!</p>
+	</div>
+
+</body>
+</html>

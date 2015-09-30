@@ -1,0 +1,130 @@
+ <!DOCTYPE html>
+<html>
+<head>
+	<title>let,const</title>
+	<meta charset='UTF-8'>
+</head>
+<body>
+<div>
+	ECMAScript6 : 这一节讲的是 let 和 const
+</div>
+<h1>
+	let 用来声明变量.它的用法类似 var, 但是所声明变量,只在 let 命令所在的代码块内有效.
+</h1>
+<script type="text/javascript">
+	"use strict";
+	var tmp = new Date();
+	function f(){
+		console.log(tmp);
+		if (false) {
+			var tmp = "hello nerd";
+			console.log("进入了 tmp 声明块");
+		}
+	}
+	f();
+
+	// ES6的块级作用域 开始
+	/*
+	* let 实际上为 js 新增了块级作用域.
+	* 下面的函数有两个代码块,都声明了变量 n, 运行后内部输出10,外部块输出5.
+	* 这表示外层代码块不受内层代码块的影响.
+	* 内层作用域可以定义外层作用域的同名变量
+	*/
+	function f1() {
+		let n = 5;
+		if (true) {
+			let n = 10;
+			console.log("这里的 n 是内层块中的 n, 值为: " + n);
+		}
+		console.log("这里的 n 是外层块中的 n, 值为: " + n);
+	}
+	f1();
+
+
+	/*块级作用域的出现,实际上使得获得广泛应用的立即执行匿名函数(IIFE)不再必要了
+	*
+	*/
+	//IIFE 写法
+	(function(){
+		var tmp = '我是 IIFE';
+		console.log(tmp);
+	}());
+	//块级作用域写法
+	{
+		let tmp = '我是块级作用域写法';
+		console.log(tmp);
+	}
+	// ES6的块级作用域 结束
+	// ES6规定,函数本身的作用域,在其所在的块级作用域之内.
+	/*
+	* 上面代码在ES5中运行，会得到“I am inside!”，
+	* 但是在ES6中运行，会得到“I am outside!”。
+	* 这是因为ES5存在函数提升，不管会不会进入if代码块，函数声明都会提升到当前作用域的顶部，得到执行；
+	* 而ES6支持块级作用域，不管会不会进入if代码块，其内部声明的函数皆不会影响到作用域的外部。
+	*/
+	function f2(){
+		console.log('I am outside!');
+	}
+	(function () {
+		if (false) {
+			//重复声明一次函数 f2
+			function f2(){
+				console.log('I am inside!');
+			}
+		}
+		f2();
+	}());
+
+	{
+		let a = "secret";
+		function  f() {
+			return a;
+		}
+	}
+	//f() 在块级作用域外部,无法调用块级作用域内部定义的函数.如果确实需要调用,要像下面这样处理.
+	let f3 ;
+	{
+		let a = 'serect';
+		f = function(){
+			return a;
+		}
+	}
+	f3();
+	//需要注意的是,如果在严格模式下,函数只能在顶层作用域和函数内部声明,
+	//其他情况(比如 if 代码块,循环代码块)的声明都会报错
+
+	//const 声明的常量和 let 声明的常量一样,只在当前代码块有效.
+	//如果想设置跨模块的常量,可以采用下面的写法.
+	//constants.js 模块
+	export const A = 1;
+	export const B = 3;
+	export const C = 4;
+
+	//test1.js 模块
+	import * as constants from './constants';
+	console.log(constants.A); //1
+	console.log(constants.B); //3
+
+	//test2.js 模块
+	import{A,B} from './constants';
+	console.log(A); //1
+	console.log(B); //3
+
+	/*
+	* 全局对象的属性
+	* 全局对象是最顶层的对象,在浏览器环境指的是 window 对象,
+	* 在 Node.js 指的是 global 对象.
+	* 在 js 中,所有全局变量都是全局对象的属性.
+	* ES6 规定, var 命令和 function 命令声明的全局变量,属于全局对象的属性;
+	* let命令, const 命令, class 命令声明的全局变量,不属于全局对象的属性
+	*/
+	var a = 1;
+	// 如果在node环境，可以写成global.a
+	// 或者采用通用方法，写成this.a
+	window.a // 1
+
+	let b = 1;
+	window.b // undefined
+</script>
+</body>
+</html>

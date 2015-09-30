@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>事件</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<script src="jquery-1.11.2.min.js"></script>
+	<style type="text/css">
+		red_color {
+			color: red;
+		}
+	</style>
+</head>
+	
+<body>
+	<p id = "foo"> 点我点我</p>
+	<p id="mutiputle_event" class="">我绑定了两个事件</p>
+	<script>
+	var obj = {name:"sszhu",age:25};
+	$( "#foo" ).bind( "click", obj,function() {
+			alert(obj.name + '\n' + obj.age);
+	});
+	$( "#mutiputle_event" ).bind( "mouseenter mouseleave", obj,function() {
+		$(this).toggleClass('red_color');
+	});
+	</script>
+</body>
+</html>

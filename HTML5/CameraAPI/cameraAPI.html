@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div>Through the Camera API, it is possible to take pictures with your device's camera and upload them into the current web page. This is achieved through an input element with type="file" and an accept attribute to declare that it accepts images. The HTML looks like this:
+</div>
+<img src="https://lh4.googleusercontent.com/-jgaRDglr8qY/Vgn6tzTjzBI/AAAAAAADNRs/rgG33vr0VSY/w650-h230-no/evidence-of-water-found-on-mars-5652760466817024.2-hp.gif">
+<img src="https://lh3.googleusercontent.com/-tFpoXezbDGg/VgnMD46bxkI/AAAAAAAAb7A/wPo7avDFHR0/w886-h498/np6927291a881101452.jpg">
+<img src="https://1.bp.blogspot.com/-ScvRsMznDQs/Vgg8gSISINI/AAAAAAAAAy0/-7N91OpKc9g/w426-h315/modi-sundar%2Balt%2Btwitter.jpg">
+<img src="https://lh3.googleusercontent.com/-KagSW51NS4o/VgaTtYjf4KI/AAAAAAAAEMo/rENoQoT7bN0/s426/1203.jpg">
+<img src="https://lh3.googleusercontent.com/-e5nLNj-fl_8/VgRmGCW_-xI/AAAAAAADM_4/zQKOgs8lTpQ/w886-h498/artificial-dance.gif">
+
+<input type="file" id="take_picture" accept="image/*">
+<script type="text/javascript">
+	// document.onready = function(){
+	// 	alert("sss");
+	// 	var takePicture = document.querySelector("#take_picture");
+	// 	console.log(takePicture);
+	// 	takePicture.onchange = function (event) {
+ //    		// Get a reference to the taken picture or chosen file
+	//     	var files = event.target.files,file;
+	//     	if (files && files.length > 0) {
+	//     		file = files[0];
+	//     	}
+	//     	console.log("ss");
+	//     	console.log("file.size: " + file.size() + " " + "file.name: " + file.name);
+	// 	};
+	// };
+	document.onreadystatechange = function () {
+		if (document.readyState == 'loading') {
+			console.log("the document is still loading");
+		}else if (document.readyState == 'interactive') {
+			// console.log(new Date());
+			console.log("loading all sub-resources");
+		} else if (document.readyState == 'complete') {
+			// console.log(new Date());
+			console.log("all resources loading completed");
+		}
+	}
+</script>
+</body>
+</html>
