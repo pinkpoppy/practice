@@ -15,15 +15,26 @@
 	</div>
 
 	<button id="button">Run Effect</button>
+
+	<div id="div1" style="background: blue;width: 100px; height: 100px;">
+		<div id="div2" style="background: red;width: 70px; height: 70px;">
+			<div id="div3" style="background: yellow;width: 50px; height: 50px;"></div>
+		</div>
+	</div>
+
 	<style>
-	.toggler{width: 500px;height: 200px;position: relative;}
+	.toggler{width:300px;height:300px; position: relative;}
 	#button{padding: 0.5em 1em;text-decoration: none;}
 	#effect{width: 240px;padding: 1em;font-size: 1.2em;border: 1px solid #000;background: #eee; color: #333;}
 	.newClass { text-indent: 40px; letter-spacing: .4em; width: 410px; height: 100px; padding: 30px; margin: 10px; font-size: 1.6em; }
 	</style>
+
 	<script type="text/javascript">
+	//The Document.readyState property of a document describes the loading state of the document.
 	document.onreadystatechange = function () {
-		if (document.readyState=='interactive') {
+		if (document.readyState=='loading') {
+			//The document is still loading.
+		} else if (document.readyState=='interactive') {
 			//The document has finished loading. We can now access the DOM elements.
 			initApplication();
 		} else if (document.readyState=='complete') {
@@ -31,6 +42,10 @@
 		}
 	}
 	function initApplication() {
+		// document.getElementsByClassName('toggler')[0].addEventListener('click',function(event) {
+		// 	console.log(event.target);
+		// },false);
+
 		document.getElementById('effect').addEventListener('click',function(event) {
 			console.log(event.target);
 		},false);
@@ -39,6 +54,31 @@
 			var effect = document.getElementById('effect');
 			effect.classList.toggle('newClass');
 		},false);
+
+
+	}
+
+	var oDvi1 = document.getElementById('div1'),
+	oDvi2 = document.getElementById('div2'),
+	oDvi3 = document.getElementById('div3');
+
+
+	// 123 -> 456 -> 345
+	oDvi1.addEventListener('click', xx1, true);
+	oDvi2.addEventListener('click', xx2, false);
+	oDvi3.addEventListener('click', xx3, true);
+
+
+	function xx1(){ //蓝
+		alert(123);
+	}
+
+	function xx2(){ //红
+		alert(345);
+	}
+
+	function xx3(){//黄
+		alert(456);
 	}
 	</script>
 </body>
