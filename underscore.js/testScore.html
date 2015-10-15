@@ -3,11 +3,40 @@
 <head>
 	<title></title>
 	<meta charset='utf-8'>
+	<script src="underscore.js"></script>
 </head>
 <body>
 	<div>debug underscore.js</div>
-<script src="underscore.js">
-	
+<script src="underscore.js"></script>
+<script src="../common.js"></script>
+	<script>
+	function parseAge(age) {
+		if(!_.isString(age)) throw new Error("Excepting a string");
+		var a;
+		console.log("Attempting to parse an age");
+
+		a = parseInt(age,10);
+		if (_.isNaN(a)) {
+			console.log(["Could not parse age:",age].join(' '));
+			a = 0;
+		}
+
+		return a;
+	}
+
+	document.onreadystatechange = function () {
+		if (document.readyState == 'loading') {
+			console.log("the document is still loading");
+		}else if (document.readyState == 'interactive') {
+			// console.log(new Date());
+			document.ready();
+			console.log(parseAge("hij"));
+		} else if (document.readyState == 'complete') {
+			// console.log(new Date());
+			console.log("all resources loading completed");
+		}
+	}
+
 </script>
 </body>
 </html>

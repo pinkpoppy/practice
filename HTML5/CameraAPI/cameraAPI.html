@@ -13,6 +13,9 @@
 <img src="https://lh3.googleusercontent.com/-e5nLNj-fl_8/VgRmGCW_-xI/AAAAAAADM_4/zQKOgs8lTpQ/w886-h498/artificial-dance.gif">
 
 <input type="file" id="take_picture" accept="image/*">
+<div id="node" class="tt">ddd
+	<p>hahah</p>
+</div>
 <script type="text/javascript">
 	// document.onready = function(){
 	// 	alert("sss");
@@ -34,6 +37,10 @@
 		}else if (document.readyState == 'interactive') {
 			// console.log(new Date());
 			console.log("loading all sub-resources");
+			var nodeTestDiv = document.getElementById('node');
+			var nodeTestDivID = nodeTestDiv.getAttribute('id');
+			var text = nodeTestDiv.innerHTML || nodeTestDiv.textContent || "";
+			console.log(nodeTestDiv.nodeName +" " + nodeTestDiv.nodeType + text + " id value is : " + nodeTestDivID);
 		} else if (document.readyState == 'complete') {
 			// console.log(new Date());
 			console.log("all resources loading completed");

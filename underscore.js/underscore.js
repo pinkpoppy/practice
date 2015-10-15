@@ -9,11 +9,11 @@
   // --------------
 
   // Establish the root object, `window` in the browser, or `exports` on the server.
- console.log("baseline setup: this refers to => " + this);
+ //console.log("baseline setup: this refers to => " + this);
   var root = this;
 
   // Save the previous value of the `_` variable.
-  console.log("previousUnderscore: _ refers to => " + root._);
+  //console.log("previousUnderscore: _ refers to => " + root._);
   var previousUnderscore = root._;
 
   // Save bytes in the minified (but not gzipped) version:
